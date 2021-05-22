@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import routes from "../routes";
 
 class Application {
   app: express.Application;
@@ -10,6 +11,7 @@ class Application {
   }
   settings() {
     this.app.set("port", process.env.PORT || 8000);
+    this.app.use("/", routes);
   }
   start() {
     this.app.listen(this.app.get("port"), () => {
