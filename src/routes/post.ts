@@ -7,5 +7,6 @@ router.get("/", PostControllers.index);
 router.post("/createP", PostControllers.createP);
 router.put("/updateP/:id", PostControllers.updateP);
 router.delete("/deleteP/:id", PostControllers.deleteP);
+router.post("/createimg/:idP/:idI", PostControllers.createimg);
 
 export default router;

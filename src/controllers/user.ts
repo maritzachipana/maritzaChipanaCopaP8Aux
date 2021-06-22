@@ -56,8 +56,9 @@ class userControllers {
         if (userT != null && posT != null){
             userT.post.push(posT);
             userT.save();
-        }
-        response.status(300).json({message: "post asignado a usuario"});
+            response.status(300).json({message: "post asignado a usuario"});
+        } 
+        response.status(300).json({message: "parametros nulos"});
     }
     public async getprofile (request: Request, response: Response){
         const {id} = request.params;

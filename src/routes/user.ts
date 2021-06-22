@@ -10,6 +10,6 @@ router.post("/createU", UserControllers.createU);
 router.put("/updateU/:id", UserControllers.updateU);
 router.delete("/deleteU/:id", UserControllers.deleteU);
 router.put("/postTouser/:idU", UserControllers.postTouser)
-router.get("/getprofile/:id", jsonwebtokenSecurity, UserControllers.getprofile)
+router.get("/getprofile/:id", jsonwebtokenSecurity, UserControllers.getprofile);
 
 export default router;

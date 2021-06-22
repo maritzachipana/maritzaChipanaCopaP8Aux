@@ -8,7 +8,6 @@ export interface IPost extends Document {
     createdAt: Date;
     updateAt: Date;
 }
-
 const postSchema: Schema = new Schema ({
     title: { type: String, required: true },
     url: { type: String, required: true, unique: true, lowercase: true},

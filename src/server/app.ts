@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import aRoutes from '../routes'
+import FileUpload from "express-fileupload";
 
 class Application {
   app: express.Application;
@@ -22,6 +23,7 @@ class Application {
     this.app.use(morgan("dev"));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
+    this.app.use(FileUpload({ limits: {fileSize: 50 * 1024 * 1024}}));
   }
   routes(){
     this.app.use("/api", aRoutes);
