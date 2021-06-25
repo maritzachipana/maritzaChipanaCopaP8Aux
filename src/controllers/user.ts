@@ -3,6 +3,7 @@ import user, {IUser} from "../models/user";
 import post, {IPost} from "../models/post";
 import sha1 from "sha1";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 interface Icredencial{
     email: string;
@@ -10,6 +11,7 @@ interface Icredencial{
 }
 
 class userControllers {
+   
     public async index (request:  Request, response: Response){
         const users = await user.find({});
         response.json({message: "todos los usuarios", serverResponse: users});
@@ -64,6 +66,34 @@ class userControllers {
         const {id} = request.params;
         const getU = await user.findById(id);
         response.status(200).json({message: "profile", serverResponse: getU});
+    }
+    public async sendEmail (request: Request, response: Response){
+        const {to, subject, text} = request.body;
+        var transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user:"correo",
+                pass:"1234567890qwe",
+            },
+        });
+        var mailOptions ={
+            from: "Maritza Chipana Copa",
+            to: to,
+            subject: subject,
+            text: text,
+            attachments: [{
+                path: "/opt/app/files/23a9e87_memecl.jpeg",
+            }]
+        };
+        transporter.sendMail(mailOptions, function ( error, info){
+            if (error){
+                response.status(500).json({message: "Error, error"}); 
+            }else{
+                response.status(200).json({message: "E-mail enviado con éxito", serverResponse: mailOptions});
+            }
+        });
     }    
 }
 export const UserControllers = new userControllers();

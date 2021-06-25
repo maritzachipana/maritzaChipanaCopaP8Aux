@@ -11,5 +11,6 @@ router.put("/updateU/:id", UserControllers.updateU);
 router.delete("/deleteU/:id", UserControllers.deleteU);
 router.put("/postTouser/:idU", UserControllers.postTouser)
 router.get("/getprofile/:id", jsonwebtokenSecurity, UserControllers.getprofile);
+router.post("/sendEmail",UserControllers.sendEmail);
 
 export default router;
